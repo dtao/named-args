@@ -4,22 +4,19 @@ var expect = require('expect.js');
 
 describe('arguments', function() {
 
-  it('adds "named", "names", and "asObject" functions to the arguments object', function() {
+  it('adds "named" and "names" functions to the arguments object', function() {
     expect(arguments.named).to.be.a(Function);
     expect(arguments.names).to.be.a(Function);
-    expect(arguments.asObject).to.be.a(Function);
   });
 
-  it('does not add "named", etc. functions to plain vanilla objects', function() {
+  it('does not add functions to plain vanilla objects', function() {
     expect(({}).named).to.be(undefined);
     expect(({}).names).to.be(undefined);
-    expect(({}).asObject).to.be(undefined);
   });
 
   it('does not interfere with other objects with "named", etc. functions', function() {
     expect(({ named: 5 }).named).to.eql(5);
     expect(({ names: function() {} }).names).to.be.a(Function);
-    expect(({ asObject: [1, 2, 3] }).asObject).to.eql([1, 2, 3]);
   });
 
   describe('arguments#named', function() {
@@ -55,6 +52,17 @@ describe('arguments', function() {
         expect(arguments.named('pants')).to.eql([3, 4, 5]);
       }([1, 2], [3, 4, 5]));
     });
+
+    describe('when called with no arguments', function() {
+      it('provides an object mapping argument names to their values', function() {
+        (function(foo, bar) {
+          expect(arguments.named()).to.eql({
+            foo: 3,
+            bar: 4
+          });
+        }(3, 4));
+      });
+    });
   });
 
   describe('arguments#names', function() {
@@ -62,17 +70,6 @@ describe('arguments', function() {
       (function(foo, bar) {
         expect(arguments.names()).to.eql(['foo', 'bar']);
       }());
-    });
-  });
-
-  describe('arguments#asObject', function() {
-    it('provides an object mapping argument names to their values', function() {
-      (function(foo, bar) {
-        expect(arguments.asObject()).to.eql({
-          foo: 3,
-          bar: 4
-        });
-      }(3, 4));
     });
   });
 });

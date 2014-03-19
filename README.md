@@ -4,7 +4,7 @@ Ever wish the `arguments` object in JavaScript were *object-like* instead of arr
 
 ```javascript
 function f(x, y, z) {
-  console.log(arguments.asObject());
+  console.log(arguments.named());
 }
 
 f(1, 2, 3);
