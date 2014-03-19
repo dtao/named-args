@@ -1,0 +1,22 @@
+{
+  "name": "named-args",
+  "version": "0.1.0",
+  "description": "Named arguments in JavaScript",
+  "main": "namedArgs.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dtao/named-args"
+  },
+  "author": "Dan Tao <daniel.tao@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dtao/named-args/issues"
+  },
+  "devDependencies": {
+    "mocha": "~1.18.2",
+    "expect.js": "~0.3.1"
+  }
+}
