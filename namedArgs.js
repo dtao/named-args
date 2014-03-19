@@ -23,7 +23,11 @@ defineArgumentsProperty('named', function(args) {
 });
 
 defineArgumentsProperty('names', function(args) {
-  return getArgumentNames(args.callee);
+  var fn = args.callee;
+
+  return function names() {
+    return getArgumentNames(fn);
+  };
 });
 
 defineArgumentsProperty('asObject', function(args) {

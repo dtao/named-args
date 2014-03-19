@@ -50,7 +50,7 @@ describe('arguments', function() {
   describe('arguments#names', function() {
     it('gets the names of the arguments', function() {
       (function(foo, bar) {
-        expect(arguments.names).to.eql(['foo', 'bar']);
+        expect(arguments.names()).to.eql(['foo', 'bar']);
       }());
     });
   });
