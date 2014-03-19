@@ -4,12 +4,22 @@ var expect = require('expect.js');
 
 describe('arguments', function() {
 
-  it('adds a "named" function to the arguments object', function() {
+  it('adds "named", "names", and "asObject" functions to the arguments object', function() {
     expect(arguments.named).to.be.a(Function);
+    expect(arguments.names).to.be.a(Function);
+    expect(arguments.asObject).to.be.a(Function);
   });
 
-  it('does not add a "named" function to plain vanilla objects', function() {
+  it('does not add "named", etc. functions to plain vanilla objects', function() {
     expect(({}).named).to.be(undefined);
+    expect(({}).names).to.be(undefined);
+    expect(({}).asObject).to.be(undefined);
+  });
+
+  it('does not interfere with other objects with "named", etc. functions', function() {
+    expect(({ named: 5 }).named).to.eql(5);
+    expect(({ names: function() {} }).names).to.be.a(Function);
+    expect(({ asObject: [1, 2, 3] }).asObject).to.eql([1, 2, 3]);
   });
 
   describe('arguments#named', function() {
