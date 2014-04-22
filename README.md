@@ -1,15 +1,13 @@
 # named-args
 
-Ever wish the `arguments` object in JavaScript were *object-like* instead of array-like?
-
-## Calling functions with named arguments
+Ever wish JavaScript had named arguments?
 
 ```javascript
 function sortableName(first, middle, last) {
   return last + ', ' + first + ' ' + middle;
 }
 
-sortableName.forArgs({
+sortableName.withArgs({
   last: 'Smith',
   first: 'Peter',
   middle: 'M'
@@ -17,7 +15,7 @@ sortableName.forArgs({
 // => 'Smith, Peter M'
 ```
 
-## Accessing `arguments` as an object
+Ever wish that `arguments` were *object-like* instead of array-like?
 
 ```javascript
 function f(x, y, z) {
