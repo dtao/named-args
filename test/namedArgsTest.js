@@ -96,6 +96,19 @@ describe('Function', function() {
         expect(z).to.eql('whatever');
       }).applyNamed(null, { x: 'blah', z: 'whatever' });
     });
+
+    it('correctly binds "this" to the first argument', function() {
+      var object = {
+        foo: 1,
+        bar: 2
+      };
+
+      var result = (function(prop) {
+        return this[prop];
+      }).applyNamed(object, { prop: 'foo' });
+
+      expect(result).to.eql(1);
+    });
   });
 
 });
