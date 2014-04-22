@@ -9,7 +9,7 @@ function sortableName(first, middle, last) {
   return last + ', ' + first + ' ' + middle;
 }
 
-sortableName.applyNamed({
+sortableName.forArgs({
   last: 'Smith',
   first: 'Peter',
   middle: 'M'
