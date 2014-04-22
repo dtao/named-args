@@ -7,7 +7,7 @@
     return this.apply(target, args);
   };
 
-  Function.prototype.forArgs = function(args) {
+  Function.prototype.withArgs = function(args) {
     return this.applyNamed(null, args);
   };
 

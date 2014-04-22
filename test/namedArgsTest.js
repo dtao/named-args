@@ -77,9 +77,9 @@ describe('arguments', function() {
 
 describe('Function', function() {
 
-  it('adds "forArgs" and "applyNamed" to the Function prototype', function() {
-    expect(Function.prototype.forArgs).to.be.a(Function);
+  it('adds "withArgs" and "applyNamed" to the Function prototype', function() {
     expect(Function.prototype.applyNamed).to.be.a(Function);
+    expect(Function.prototype.withArgs).to.be.a(Function);
   });
 
   describe('Function#applyNamed', function() {
@@ -112,13 +112,13 @@ describe('Function', function() {
     });
   });
 
-  describe('Function#forArgs', function() {
+  describe('Function#withArgs', function() {
     it('works the same as #applyNamed, but without "this" binding', function() {
       (function(x, y, z) {
         expect(x).to.eql('blah');
         expect(y).to.eql(undefined);
         expect(z).to.eql('whatever');
-      }).forArgs({ x: 'blah', z: 'whatever' });
+      }).withArgs({ x: 'blah', z: 'whatever' });
     });
   });
 
