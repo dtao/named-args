@@ -1,5 +1,13 @@
 (function() {
 
+  Function.prototype.applyNamed = function(target, args) {
+    var map = getNameToIndexMap(this);
+
+    args = convertNamesToIndices(args, map);
+
+    return this.apply(target, args);
+  };
+
   function defineArgumentsProperty(name, factory) {
     Object.defineProperty(Object.prototype, name, {
       get: function() {
@@ -13,7 +21,7 @@
   }
 
   defineArgumentsProperty('named', function(args) {
-    var map  = getNameToIndexMap(args.callee);
+    var map = getNameToIndexMap(args.callee);
 
     return function named(name) {
       if (arguments.length === 0) {
@@ -58,6 +66,16 @@
     }
 
     return map;
+  }
+
+  function convertNamesToIndices(args, nameToIndexMap) {
+    var list = [];
+
+    for (var arg in nameToIndexMap) {
+      list[nameToIndexMap[arg]] = args[arg];
+    }
+
+    return list;
   }
 
   function trim(string) {

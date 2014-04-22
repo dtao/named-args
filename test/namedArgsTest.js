@@ -72,4 +72,30 @@ describe('arguments', function() {
       }());
     });
   });
+
+});
+
+describe('Function', function() {
+
+  it('adds "applyNamed" to the Function prototype', function() {
+    expect(Function.prototype.applyNamed).to.be.a(Function);
+  });
+
+  describe('Function#applyNamed', function() {
+    it('maps the args to their appropriate places', function() {
+      (function(x, y) {
+        expect(x).to.eql('foo');
+        expect(y).to.eql('bar');
+      }).applyNamed(null, { x: 'foo', y: 'bar' });
+    });
+
+    it('passes in missing values as undefined', function() {
+      (function(x, y, z) {
+        expect(x).to.eql('blah');
+        expect(y).to.eql(undefined);
+        expect(z).to.eql('whatever');
+      }).applyNamed(null, { x: 'blah', z: 'whatever' });
+    });
+  });
+
 });
