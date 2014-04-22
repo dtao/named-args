@@ -1,11 +1,14 @@
 (function() {
-
   Function.prototype.applyNamed = function(target, args) {
     var map = getNameToIndexMap(this);
 
     args = convertNamesToIndices(args, map);
 
     return this.apply(target, args);
+  };
+
+  Function.prototype.forArgs = function(args) {
+    return this.applyNamed(null, args);
   };
 
   function defineArgumentsProperty(name, factory) {

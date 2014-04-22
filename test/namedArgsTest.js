@@ -120,12 +120,6 @@ describe('Function', function() {
         expect(z).to.eql('whatever');
       }).forArgs({ x: 'blah', z: 'whatever' });
     });
-
-    it('binds "this" to null', function() {
-      (function(x, y, z) {
-        expect(this).to.eql(null);
-      }).forArgs({});
-    });
   });
 
 });
